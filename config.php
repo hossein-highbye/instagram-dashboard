@@ -1,4 +1,5 @@
 <?php
+
 // Database conf
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'instagram_4berry');

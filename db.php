@@ -17,4 +17,13 @@ $users_table = "CREATE TABLE users(
     role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );";
-$pdo->prepare($users_table);
+$messages_table = "CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    sender VARCHAR(100),
+    receiver VARCHAR(100),
+    message TEXT,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('sent', 'received') DEFAULT 'sent',
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);";

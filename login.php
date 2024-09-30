@@ -1,25 +1,32 @@
 <?php
 session_start();
+require_once "db.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['password'])) {
-    require_once 'db.php';
-    $username = htmlspecialchars(trim($_POST['username']));
-    $password = trim($_POST['password']);
-
-    // Check if the login credentials match the predefined admin credentials
-//    if ($username === $admin_username && $password === $admin_password) {
-        $_SESSION['admin_logged_in'] = true;
-        header("Location: admin_dashboard.php");
-        exit;
+// Check if session is already set
+if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+    // Redirect based on the role
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin_dashboard.php"); // Redirect to admin dashboard
     } else {
+        header("Location: user_dashboard.php"); // Redirect to user dashboard
+    }
+    exit;
+}
+
+// If no session is set, proceed with login
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        // Sanitize input
+        $username = htmlspecialchars(trim($_POST['username']));
+        $password = trim($_POST['password']);
 
         // Fetch user from the database
-        $sql = "SELECT id, username, password FROM users WHERE username = :username";
+        $sql = "SELECT id, username, password, role FROM users WHERE username = :username";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
-        // Check if user exists
+        // Check if the user exists
         if ($stmt->rowCount() == 1) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -28,19 +35,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username'], $_POST['pa
                 // Password is correct, start a session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-                header("Location: dashboard.php"); // Redirect to dashboard
+                $_SESSION['role'] = $user['role']; // Store the role in the session
+
+                // Redirect based on the role
+                if ($user['role'] === 'admin') {
+                    header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+                } else {
+                    header("Location: user_dashboard.php"); // Redirect to user dashboard
+                }
                 exit;
             } else {
-                session_destroy();
                 echo "Invalid username or password!";
             }
         } else {
-            session_destroy();
             echo "Invalid username or password!";
         }
     }
 }
 ?>
+
 <!DOCTYPE html>
 <head>
     <title>Login</title>

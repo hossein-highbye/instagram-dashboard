@@ -2,8 +2,8 @@
 session_start();
 
 // Check if the admin is logged in
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header("Location: login_form.html");
+if ($_SESSION['admin_logged_in'] === false && $_SESSION['role'] === false) {
+    header("Location: login.php");
     exit;
 }
 
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ?>
 </table>
 
-<form action="admin_dashboard.php" method="POST">
+<form action="" method="POST">
     <h2>Create New User</h2>
     <label for="new_username">Username</label>
     <input type="text" id="new_username" name="new_username" required>
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <h2>Delete Existing Users</h2>
-<form action="admin_dashboard.php" method="POST">
+<form action="" method="POST">
     <label for="user_id">User ID</label>
     <input type="number" id="user_id" name="user_id" required>
 
