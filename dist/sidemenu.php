@@ -30,7 +30,7 @@
 <div class="sidebar-menu">
     <ul class="menu">
         <li class="sidebar-title">Menu</li>
-        <li class="sidebar-item active ">
+        <li class="sidebar-item" id="dashboard">
             <a href="" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
@@ -233,7 +233,7 @@
                     <a href="/dist/table-datatable.html" class="submenu-link">Datatable</a>
                 </li>
                 <li class="submenu-item  ">
-                    <a href="/dist/table-datatable-jquery.html" class="submenu-link">Datatable (jQuery)</a>
+                    <a href="/dist/table-datatable-jquery.php" class="submenu-link">Datatable (jQuery)</a>
                 </li>
             </ul>
         </li>

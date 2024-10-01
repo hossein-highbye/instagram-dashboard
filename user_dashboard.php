@@ -6,6 +6,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
     header("Location: login_form.html");
     exit;
 }
+
+$lastPart = basename($_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +24,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
     <link rel="stylesheet" crossorigin href="/dist/assets/compiled/css/app.css">
     <link rel="stylesheet" crossorigin href="/dist/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" crossorigin href="/dist/assets/compiled/css/iconly.css">
+
+    <!--  jQuery-3.7.1  -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/custom.min.js" defer></script>
 </head>
 
 <body>
