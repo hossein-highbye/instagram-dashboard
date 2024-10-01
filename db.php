@@ -27,3 +27,10 @@ $messages_table = "CREATE TABLE messages (
     status ENUM('sent', 'received') DEFAULT 'sent',
     FOREIGN KEY (user_id) REFERENCES users(id)
 );";
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}

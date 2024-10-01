@@ -13,8 +13,8 @@ require_once "db.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['create_user'])) {
         // Sanitize and validate input
-        $new_username = htmlspecialchars(trim($_POST['new_username']));
-        $new_password = trim($_POST['new_password']);
+        $new_username = test_input($_POST['new_username']);
+        $new_password = test_input($_POST['new_password']);
 
         if (strlen($new_username) < 5 || strlen($new_password) < 6) {
             echo "Username must be at least 5 characters and password 6 characters.";

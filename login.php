@@ -17,8 +17,8 @@ if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         // Sanitize input
-        $username = htmlspecialchars(trim($_POST['username']));
-        $password = trim($_POST['password']);
+        $username = test_input($_POST['username']);
+        $password = test_input($_POST['password']);
 
         // Fetch user from the database
         $sql = "SELECT id, username, password, role FROM users WHERE username = :username";
@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Password is correct, start a session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['role'] = $user['role']; // Store the role in the session
+                $_SESSION['role'] = $user['role'];
 
                 // Redirect based on the role
                 if ($user['role'] === 'admin') {
-                    header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+                    header("Location: admin_dashboard.php");
                 } else {
-                    header("Location: user_dashboard.php"); // Redirect to user dashboard
+                    header("Location: user_dashboard.php");
                 }
                 exit;
             } else {
@@ -57,15 +57,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <head>
     <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/aqua.min.css">
+    <link rel="stylesheet" href="assets/css/login.scss">
 </head>
 <body>
-<form action="" method="POST">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required>
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-
-    <button type="submit">Login</button>
+<form class="login-form" action="javascript:void(0);">
+    <h1>Login</h1>
+    <div class="form-input-material">
+        <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+        <label for="username">Username</label>
+    </div>
+    <div class="form-input-material">
+        <input type="password" name="password" id="password" placeholder=" " autocomplete="off" class="form-control-material" required />
+        <label for="password">Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-ghost">Login</button>
 </form>
 </body>
