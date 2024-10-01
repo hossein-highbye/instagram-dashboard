@@ -31,7 +31,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
         <div class="sidebar-wrapper active">
             <div class="sidebar-header position-relative">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                    <div class="d-flex">
+                        <a href="logout.php">
+                            <button class="btn btn-primary">Logout</button>
+                        </a>
+                    </div>
+                    <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
                              role="img" class="iconify iconify--system-uicons" width="20" height="20"
                              preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -70,7 +75,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item active ">
-                        <a href="/" class='sidebar-link'>
+                        <a href="" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -493,7 +498,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="ui-chart-apexcharts.html" class="submenu-link">Apexcharts</a>
+                                <a href="dist/ui-chart-apexcharts.html" class="submenu-link">Apexcharts</a>
 
                             </li>
 
@@ -504,7 +509,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item  ">
-                        <a href="ui-file-uploader.html" class='sidebar-link'>
+                        <a href="dist/ui-file-uploader.html" class='sidebar-link'>
                             <i class="bi bi-cloud-arrow-up-fill"></i>
                             <span>File Uploader</span>
                         </a>
@@ -522,12 +527,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                         <ul class="submenu ">
 
                             <li class="submenu-item  ">
-                                <a href="ui-map-google-map.html" class="submenu-link">Google Map</a>
+                                <a href="dist/ui-map-google-map.html" class="submenu-link">Google Map</a>
 
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="ui-map-jsvectormap.html" class="submenu-link">JS Vector Map</a>
+                                <a href="dist/ui-map-jsvectormap.html" class="submenu-link">JS Vector Map</a>
 
                             </li>
 
@@ -552,7 +557,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
 
                                     <li class="submenu-item ">
-                                        <a href="ui-multi-level-menu.html" class="submenu-link">Second Level</a>
+                                        <a href="dist/ui-multi-level-menu.html" class="submenu-link">Second Level</a>
                                     </li>
 
 
@@ -567,7 +572,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
 
                                     <li class="submenu-item ">
-                                        <a href="ui-multi-level-menu.html" class="submenu-link">Second Level Menu</a>
+                                        <a href="dist/ui-multi-level-menu.html" class="submenu-link">Second Level Menu</a>
                                     </li>
 
 
@@ -584,7 +589,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item  ">
-                        <a href="application-email.html" class='sidebar-link'>
+                        <a href="dist/application-email.html" class='sidebar-link'>
                             <i class="bi bi-envelope-fill"></i>
                             <span>Email Application</span>
                         </a>
@@ -594,7 +599,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item  ">
-                        <a href="application-chat.html" class='sidebar-link'>
+                        <a href="dist/application-chat.html" class='sidebar-link'>
                             <i class="bi bi-chat-dots-fill"></i>
                             <span>Chat Application</span>
                         </a>
@@ -604,7 +609,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item  ">
-                        <a href="application-gallery.html" class='sidebar-link'>
+                        <a href="dist/application-gallery.html" class='sidebar-link'>
                             <i class="bi bi-image-fill"></i>
                             <span>Photo Gallery</span>
                         </a>
@@ -614,7 +619,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
 
                     <li
                         class="sidebar-item  ">
-                        <a href="application-checkout.html" class='sidebar-link'>
+                        <a href="dist/application-checkout.html" class='sidebar-link'>
                             <i class="bi bi-basket-fill"></i>
                             <span>Checkout Page</span>
                         </a>
@@ -632,41 +637,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                         <ul class="submenu ">
 
                             <li class="submenu-item  ">
-                                <a href="account-profile.html" class="submenu-link">Profile</a>
+                                <a href="dist/account-profile.html" class="submenu-link">Profile</a>
 
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="account-security.html" class="submenu-link">Security</a>
-
-                            </li>
-
-                        </ul>
-
-
-                    </li>
-
-                    <li
-                        class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
-                            <i class="bi bi-person-badge-fill"></i>
-                            <span>Authentication</span>
-                        </a>
-
-                        <ul class="submenu ">
-
-                            <li class="submenu-item  ">
-                                <a href="auth-login.html" class="submenu-link">Login</a>
-
-                            </li>
-
-                            <li class="submenu-item  ">
-                                <a href="auth-register.html" class="submenu-link">Register</a>
-
-                            </li>
-
-                            <li class="submenu-item  ">
-                                <a href="auth-forgot-password.html" class="submenu-link">Forgot Password</a>
+                                <a href="dist/account-security.html" class="submenu-link">Security</a>
 
                             </li>
 
@@ -685,17 +661,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                         <ul class="submenu ">
 
                             <li class="submenu-item  ">
-                                <a href="error-403.html" class="submenu-link">403</a>
+                                <a href="dist/error-403.html" class="submenu-link">403</a>
 
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="error-404.html" class="submenu-link">404</a>
+                                <a href="dist/error-404.html" class="submenu-link">404</a>
 
                             </li>
 
                             <li class="submenu-item  ">
-                                <a href="error-500.html" class="submenu-link">500</a>
+                                <a href="dist/error-500.html" class="submenu-link">500</a>
 
                             </li>
 
@@ -924,7 +900,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/5.jpg">
+                                                            <img src="dist/assets/compiled/jpg/5.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Si Cantik</p>
                                                     </div>
@@ -937,21 +913,20 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/2.jpg">
+                                                            <img src="dist/assets/compiled/jpg/2.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Si Ganteng</p>
                                                     </div>
                                                 </td>
                                                 <td class="col-auto">
-                                                    <p class=" mb-0">Wow amazing design! Can you make another tutorial for
-                                                        this design?</p>
+                                                    <p class=" mb-0">Wow amazing design! Can you make another tutorial for this design?</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/8.jpg">
+                                                            <img src="dist/assets/compiled/jpg/8.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Singh Eknoor</p>
                                                     </div>
@@ -964,7 +939,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
                                                 <td class="col-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar avatar-md">
-                                                            <img src="./assets/compiled/jpg/3.jpg">
+                                                            <img src="dist/assets/compiled/jpg/3.jpg">
                                                         </div>
                                                         <p class="font-bold ms-3 mb-0">Rani Jhadav</p>
                                                     </div>
@@ -1011,17 +986,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
         </footer>
     </div>
 </div>
-<script src="assets/static/js/components/dark.js"></script>
-<script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="dist/assets/static/js/components/dark.js"></script>
+<script src="dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
 
-<script src="assets/compiled/js/app.js"></script>
+<script src="dist/assets/compiled/js/app.js"></script>
 
 
 
 <!-- Need: Apexcharts -->
-<script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
-<script src="assets/static/js/pages/dashboard.js"></script>
+<script src="dist/assets/extensions/apexcharts/apexcharts.min.js"></script>
+<script src="dist/assets/static/js/pages/dashboard.js"></script>
 
 </body>
 

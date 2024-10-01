@@ -45,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
                 exit;
             } else {
-                echo "Invalid username or password!";
+                $error_message = '<p class="alert alert-danger font-bold">Invalid Password!</p>';
             }
         } else {
-            echo "Invalid username or password!";
+            $error_message = '<p class="alert alert-danger font-bold">No user found with this username and password!</p>';
         }
     }
 }
@@ -61,10 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="assets/css/login.scss">
 </head>
 <body>
-<form class="login-form" action="javascript:void(0);">
+<?php if (isset($error_message)) echo $error_message; ?>
+<form class="login-form d-flex" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <h1>Login</h1>
     <div class="form-input-material">
-        <input type="text" name="username" id="username" placeholder=" " autocomplete="off" class="form-control-material" required />
+        <input type="text" name="username" id="username" placeholder=" " value="<?php echo $_POST['username'] ?? '' ?>" autocomplete="off" class="form-control-material" required />
         <label for="username">Username</label>
     </div>
     <div class="form-input-material">

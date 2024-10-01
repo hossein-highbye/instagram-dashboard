@@ -1,9 +1,13 @@
 body {
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #eceffc;
+  background-image: radial-gradient(#004373 2px, transparent 2px), radial-gradient(#004373 2px, transparent 2px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  background-color: #c7c7c7;
 }
 
 .btn {
@@ -53,7 +57,9 @@ body {
   align-items: center;
   padding: 50px 40px;
   color: white;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
   box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
   0 1px 1px rgba(128, 128, 128, 0.155),
