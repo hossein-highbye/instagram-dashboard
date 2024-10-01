@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Sanitize and validate input
         $new_username = test_input($_POST['new_username']);
         $new_password = test_input($_POST['new_password']);
+        $new_role = test_input($_POST['role']);
 
         if (strlen($new_username) < 5 || strlen($new_password) < 6) {
             $error_message = '<p class="alert alert-danger">Username must be at least 5 characters and password 6 characters.</p>';
@@ -23,10 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
             // Insert new user into the database
-            $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+            $sql = "INSERT INTO users (username, password, role) VALUES (:username, :password, :role)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':username', $new_username);
             $stmt->bindParam(':password', $hashed_password);
+            $stmt->bindParam(':role', $new_role);
 
             if ($stmt->execute()) {
                 $error_message = '<p class="alert alert-success">User created successfully!</p>';
@@ -139,6 +141,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="my-2">
                                     <label for="new_password">Password</label>
                                     <input class="form-control" type="password" id="new_password" name="new_password" required>
+                                </div>
+                                <div class="d-flex my-2 justify-content-between align-items-center">
+                                    <label>Role</label>
+                                    <div>
+                                        <div>
+                                            <input class="mx-2" id="userrole" type="radio" checked="checked" name="role" value="user"><label for="userrole">User</label>
+                                        </div>
+                                        <div>
+                                            <input class="mx-2" id="adminrole" type="radio" name="role" value="admin"><label for="adminrole">Admin</label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <button class="btn btn-primary my-2" type="submit" name="create_user">Create User</button>
