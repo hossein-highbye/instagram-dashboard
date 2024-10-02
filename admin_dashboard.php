@@ -129,9 +129,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Basic Tables end -->
         <section class="section d-flex mt-5">
             <div class="row w-100">
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="row justify-content-center align-items-center custom-height">
-                        <div class="d-flex flex-column h-100 w-50 p-5 justify-content-between border-glass">
+                <div class="col-12 col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row justify-content-center align-items-center custom-height mb-5">
+                        <div class="d-flex flex-column h-100 w-50 p-5 justify-content-between border-glass w-75">
                             <h2 class="mb-5">Create New User</h2>
                             <form action="" method="POST" class="d-flex flex-column form-group">
                                 <div class="my-2">
@@ -161,9 +161,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-6 col-sm-12">
-                    <div class="row justify-content-center align-items-center custom-height">
-                        <div class="d-flex flex-column h-100 w-50 p-5 justify-content-between border-glass">
+                <div class="col-12 col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row justify-content-center align-items-center custom-height mb-5">
+                        <div class="d-flex flex-column h-100 w-50 p-5 justify-content-between border-glass w-75">
                             <h2 class="mb-5">Delete Existing Users</h2>
                             <form action="" method="POST" class="d-flex flex-column form-group">
                                 <div class="my-2">
