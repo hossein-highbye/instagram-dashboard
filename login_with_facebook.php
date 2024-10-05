@@ -4,8 +4,8 @@ require_once 'vendor/autoload.php';
 
 try {
     $fb = new \Facebook\Facebook([
-        'app_id' => FB_APP_ID, // Replace with your app id
-        'app_secret' => FB_APP_SECRET, // Replace with your app secret
+        'app_id' => FB_APP_ID,
+        'app_secret' => FB_APP_SECRET,
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
@@ -13,7 +13,7 @@ try {
 }
 
 $helper = $fb->getRedirectLoginHelper();
-$permissions = ['pages_messaging', 'instagram_basic', 'instagram_manage_messages'];
+$permissions = ['pages_messaging', 'instagram_basic', 'instagram_manage_messages']; // Permission's needed
 $loginUrl = $helper->getLoginUrl(FB_REDIRECT_URL, $permissions);
 
 // Redirect user to login
