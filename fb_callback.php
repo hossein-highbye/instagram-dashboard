@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once 'config.php';
 require_once 'vendor/autoload.php';
@@ -11,7 +10,7 @@ try {
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-    error_log($e,0, '/error-log.log');
+    error_log($e->getMessage(),0, '/error-log.log');
 }
 
 $helper = $fb->getRedirectLoginHelper();
