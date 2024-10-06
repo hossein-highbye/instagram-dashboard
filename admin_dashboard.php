@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Check if the admin is logged in
-if ($_SESSION['admin_logged_in'] === false && $_SESSION['role'] === false) {
-    header("Location: login.php");
+require_once "db.php";
+
+// Ensure the user is an admin
+if ($_SESSION['role'] !== 'admin') {
+    echo "Access denied!";
     exit;
 }
-
-require_once "db.php";
 
 // Handle user creation and deletion
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

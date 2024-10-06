@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once 'config.php';
 require_once 'db.php';
 
 // Ensure user is logged in and Instagram account is set
