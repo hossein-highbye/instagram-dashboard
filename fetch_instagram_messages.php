@@ -24,20 +24,27 @@ try {
 }
 
 try {
-    // Get the Instagram direct messages (conversations)
-    $response = $fb->get("/$instagramAccountId/conversations", $accessToken);
+    // Get the conversations for the Instagram account
+    $response = $fb->get("/$instagramAccountId/conversations?fields=id,participants,updated_time", $accessToken);
     $conversations = $response->getDecodedBody();
 
-    // Display conversation details
+    // Display the conversation details
     foreach ($conversations['data'] as $conversation) {
         echo "Conversation ID: " . $conversation['id'] . "<br>";
         echo "Participants: " . implode(", ", array_column($conversation['participants']['data'], 'name')) . "<br>";
+        echo "Last Updated: " . $conversation['updated_time'] . "<br>";
         echo "<hr>";
     }
+
+    // Check for pagination
+    if (isset($conversations['paging']['next'])) {
+        echo "<a href='{$conversations['paging']['next']}'>Load more conversations</a>";
+    }
+
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
-    error_log('Graph returned an error: ' . $e->getMessage(),0,'error-log.log');
+    error_log('Graph returned an error: ' . $e->getMessage(),0, 'error-log.log');;
     exit;
 } catch(Facebook\Exceptions\FacebookSDKException $e) {
-    error_log('Facebook SDK returned an error: ' . $e->getMessage(),0,'error-log.log');
+    error_log('Facebook SDK returned an error: ' . $e->getMessage(),0, 'error-log.log');
     exit;
 }
