@@ -311,10 +311,7 @@ $lastPart = basename($_SERVER['REQUEST_URI']);
 <script src="dist/assets/static/js/components/dark.js"></script>
 <script src="dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
-
 <script src="dist/assets/compiled/js/app.js"></script>
-
-
 
 <!-- Need: Apexcharts -->
 <script src="dist/assets/extensions/apexcharts/apexcharts.min.js"></script>

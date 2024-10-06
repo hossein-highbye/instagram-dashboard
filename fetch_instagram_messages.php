@@ -17,7 +17,7 @@ try {
     $fb = new \Facebook\Facebook([
         'app_id' => FB_APP_ID,
         'app_secret' => FB_APP_SECRET,
-        'default_graph_version' => 'v14.0',
+        'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     error_log($e->getMessage(), 0, 'error-log.log');
