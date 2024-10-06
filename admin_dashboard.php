@@ -179,6 +179,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
         </section>
+        <section>
+            <div class="row w-100">
+                <div class="col-12 col-lg-6 col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                    <?php
+                    require_once 'fetch_instagram_messages.php'; // Fetch the conversations
+
+                    // Display the conversations in a table format
+                    echo "<h1>Instagram Direct Messages</h1>";
+                    echo "<table>";
+                    echo "<tr><th>Conversation ID</th><th>Participants</th><th>Last Updated</th><th>Actions</th></tr>";
+
+                    if (isset($conversations)) {
+                        foreach ($conversations['data'] as $conversation) {
+                            echo "<tr>";
+                            echo "<td>" . $conversation['id'] . "</td>";
+                            echo "<td>" . implode(", ", array_column($conversation['participants']['data'], 'name')) . "</td>";
+                            echo "<td>" . $conversation['updated_time'] . "</td>";
+                            echo "<td><a href='view_conversation.php?conversation_id=" . $conversation['id'] . "'>View</a></td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+
+                        if (isset($conversations['paging']['next'])) {
+                            echo "<a href='{$conversations['paging']['next']}'>Load more conversations</a>";
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 <script src="dist/assets/static/js/components/dark.js"></script>
