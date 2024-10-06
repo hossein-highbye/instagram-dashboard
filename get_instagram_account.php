@@ -18,7 +18,7 @@ try {
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-    error_log($e->getMessage(),0, '/error-log.log');
+    error_log(basename(__FILE__) . ' :Facebook connection prob!',0,'error-log.log');
 }
 
 try {

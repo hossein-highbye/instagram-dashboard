@@ -3,7 +3,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user') {
-    header("Location: login_form.html");
+    header("Location: login.php");
     exit;
 }
 
