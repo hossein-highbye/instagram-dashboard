@@ -16,7 +16,7 @@ try {
     $fb = new \Facebook\Facebook([
         'app_id' => FB_APP_ID,
         'app_secret' => FB_APP_SECRET,
-        'default_graph_version' => 'v14.0',
+        'default_graph_version' => 'v20.0',
     ]);
     try {
         // Get the messages in the conversation

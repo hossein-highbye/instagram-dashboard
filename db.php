@@ -32,16 +32,11 @@ $messages_table = "CREATE TABLE IF NOT EXISTS messages (
 $pdo->exec($messages_table);
 
 // Add this to your database initialization or in a separate migration file
-$token_table = "
-CREATE TABLE IF NOT EXISTS instagram_tokens (
+$token_table = "CREATE TABLE IF NOT EXISTS tokens (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL, -- User associated with the token
-    instagram_account_id VARCHAR(255) NOT NULL, -- Instagram account ID
-    access_token TEXT NOT NULL, -- Long-lived access token
-    expires_at INT NOT NULL, -- Expiration timestamp (Unix)
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    access_token TEXT NOT NULL,
+    expires_at DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );";
 $pdo->exec($token_table);
 
