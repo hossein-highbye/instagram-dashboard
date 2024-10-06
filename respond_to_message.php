@@ -1,0 +1,49 @@
+<?php
+session_start();
+require_once 'config.php';
+require_once 'db.php';
+require_once 'check_token_expiration.php'; // Ensure the token is valid
+
+// Check if Instagram Account ID and access token are set
+if (!isset($_SESSION['instagram_account_id']) || !isset($_SESSION['fb_access_token'])) {
+    echo "Error: Instagram account ID or access token missing!";
+    exit;
+}
+
+$instagramAccountId = $_SESSION['instagram_account_id'];
+$accessToken = $_SESSION['fb_access_token'];
+
+// Check if conversation ID and message are set
+if (!isset($_POST['conversation_id']) || !isset($_POST['message'])) {
+    echo "Error: Conversation ID or message missing!";
+    exit;
+}
+
+$conversationId = $_POST['conversation_id'];
+$messageText = $_POST['message'];
+
+try {
+    $fb = new \Facebook\Facebook([
+        'app_id' => FB_APP_ID,
+        'app_secret' => FB_APP_SECRET,
+        'default_graph_version' => 'v20.0',
+    ]);
+} catch (\Facebook\Exceptions\FacebookSDKException $e) {
+    error_log($e->getMessage(),0,'error-log.log');
+}
+
+try {
+    // Send a message to the conversation
+    $response = $fb->post("/$conversationId/messages", [
+        'message' => $messageText
+    ], $accessToken);
+
+    // Response handling
+    echo "Message sent successfully!";
+} catch (Facebook\Exceptions\FacebookResponseException $e) {
+    error_log('Graph returned an error: ' . $e->getMessage(),0,'error-log.log');
+    exit;
+} catch (Facebook\Exceptions\FacebookSDKException $e) {
+    error_log('Facebook SDK returned an error: ' . $e->getMessage(),0,'error-log.log');
+    exit;
+}
