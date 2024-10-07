@@ -10,6 +10,7 @@ if (!isset($_GET['conversation_id'])) {
 }
 
 $conversationId = $_GET['conversation_id'];
+$accessToken = $_SESSION['fb_access_token'];
 
 // Fetch messages from the database
 $stmt = $pdo->prepare("SELECT sender_name, message_text, created_time FROM messages WHERE conversation_id = :conversation_id ORDER BY created_time ASC");
