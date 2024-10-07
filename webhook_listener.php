@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'db.php';
 
 /*
  *
@@ -17,17 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['hub_challenge'])) {
 $input = json_decode(file_get_contents('php://input'), true);
 
 if (isset($input['entry'][0]['messaging'])) {
-    // Process new messages
     foreach ($input['entry'][0]['messaging'] as $event) {
         if (isset($event['message'])) {
             // Extract message details
-            $message = $event['message']['text'];
+            $messageText = $event['message']['text'];
             $senderId = $event['sender']['id'];
             $timestamp = $event['timestamp'];
+            $conversationId = $event['sender']['id']; // Use the sender's ID as conversation_id (assuming 1-to-1 chat)
 
-            // Store message in database or notify the dashboard
-            // just a logging for now
-            error_log("New message from $senderId: $message at $timestamp");
+            // Insert message into the database
+            $stmt = $pdo->prepare("INSERT INTO messages (conversation_id, sender_id, message_text, created_time, timestamp) VALUES (:conversation_id, :sender_id, :message_text, NOW(), :timestamp)");
+            $stmt->execute([
+                ':conversation_id' => $conversationId,
+                ':sender_id' => $senderId,
+                ':message_text' => $messageText,
+                ':timestamp' => $timestamp
+            ]);
         }
     }
 }
