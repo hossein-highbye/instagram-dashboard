@@ -4,7 +4,7 @@ require_once 'db.php';
 require_once 'check_token_expiration.php'; // Token validation
 
 // conversation_id existence check
-if (!isset($_GET['conversation_id'])) {
+if (!isset($_GET['conversation_id']) && !isset($_SESSION['fb_access_token'])) {
     echo "Error: Conversation ID missing!";
     exit;
 }
