@@ -18,10 +18,15 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo "<h1>Conversation ID: $conversationId</h1>";
 
-// Display messages
-foreach ($messages as $message) {
-    echo "<p><strong>" . htmlspecialchars($message['sender_name']) . ":</strong> " . htmlspecialchars($message['message_text']) . " <em>(" . htmlspecialchars($message['created_time']) . ")</em></p>";
-    echo "<hr>";
+// Check if there are any messages
+if (empty($messages)) {
+    echo "<p>No messages found for this conversation.</p>";
+} else {
+    // Display messages
+    foreach ($messages as $message) {
+        echo "<p><strong>" . htmlspecialchars($message['sender_name']) . ":</strong> " . htmlspecialchars($message['message_text']) . " <em>(" . htmlspecialchars($message['created_time']) . ")</em></p>";
+        echo "<hr>";
+    }
 }
 
 // Check for pagination (if there are more messages to load)
