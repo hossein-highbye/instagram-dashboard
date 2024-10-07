@@ -21,17 +21,29 @@ $pdo->exec($users_table);
 
 $messages_table = "CREATE TABLE IF NOT EXISTS messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    sender VARCHAR(100),
-    receiver VARCHAR(100),
-    message TEXT,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('sent', 'received') DEFAULT 'sent',
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    conversation_id VARCHAR(255) NOT NULL,
+    sender_id VARCHAR(255) NOT NULL,
+    sender_name VARCHAR(255),
+    message_text TEXT NOT NULL,
+    created_time DATETIME NOT NULL,
+    timestamp BIGINT NOT NULL
 );";
 $pdo->exec($messages_table);
 
-// Add this to your database initialization or in a separate migration file
+$instagram_token_table = "CREATE TABLE IF NOT EXISTS `instagram_tokens` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `instagram_account_id` varchar(255) NOT NULL,
+    `access_token` text NOT NULL,
+    `expires_at` int(11) NOT NULL,
+    `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+    `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+    PRIMARY KEY (`id`),
+    KEY `user_id` (`user_id`),
+    CONSTRAINT `instagram_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+$pdo->exec($instagram_token_table);
+
 $token_table = "CREATE TABLE IF NOT EXISTS tokens (
     id INT AUTO_INCREMENT PRIMARY KEY,
     access_token TEXT NOT NULL,
@@ -40,7 +52,8 @@ $token_table = "CREATE TABLE IF NOT EXISTS tokens (
 );";
 $pdo->exec($token_table);
 
-function test_input($data) {
+function test_input($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
