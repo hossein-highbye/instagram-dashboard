@@ -11,7 +11,7 @@ try {
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-    error_log(basename(__FILE__) . ' :Facebook connection prob!',0,'error-log.log');
+    error_log(basename(__FILE__) . ' :Facebook connection prob!',3,'error-log.log');
 }
 
 $helper = $fb->getRedirectLoginHelper();
@@ -21,7 +21,7 @@ try {
     $accessToken = $helper->getAccessToken(FB_REDIRECT_URL);
 
     if (!isset($accessToken)) {
-        echo "Error: Login failed!";
+        error_log(basename(__FILE__) . ' :Access token not granted!',3,'error-log.log');
         exit;
     }
 
@@ -31,7 +31,7 @@ try {
 
     // Store token in session
     $_SESSION['fb_access_token'] = (string)$longLivedAccessToken;
-    $_SESSION['fb_token_expiration'] = time() + $longLivedAccessToken->getExpiresAt()->getTimestamp();
+    $_SESSION['fb_token_expiration'] = $longLivedAccessToken->getExpiresAt()->getTimestamp();
 
     // Save token and expiration into the database
     $userId = $_SESSION['user_id']; // Assuming user is already logged in
@@ -56,9 +56,9 @@ try {
     header('Location: get_instagram_account.php');
     exit;
 } catch (Facebook\Exceptions\FacebookResponseException $e) {
-    error_log('Graph returned an error: ' . $e->getMessage(),0,'error-log.log');
+    error_log('Graph returned an error: ' . $e->getMessage(),3,'error-log.log');
     exit;
 } catch (Facebook\Exceptions\FacebookSDKException $e) {
-    error_log('Facebook SDK returned an error: ' . $e->getMessage(),0,'error-log.log');
+    error_log('Facebook SDK returned an error: ' . $e->getMessage(),3,'error-log.log');
     exit;
 }

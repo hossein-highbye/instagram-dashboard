@@ -6,11 +6,10 @@ require_once "db.php";
 if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
     // Redirect based on the role
     if ($_SESSION['role'] === 'admin') {
-        header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+        header("Location: admin_dashboard.php");
     } else {
-        header("Location: user_dashboard.php"); // Redirect to user dashboard
+        header("Location: user_dashboard.php");
     }
-    exit;
 }
 
 // If no session is set, proceed with login
@@ -43,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     header("Location: user_dashboard.php");
                 }
-                exit;
             } else {
                 $error_message = '<p class="alert alert-danger font-bold">Invalid Password!</p>';
             }

@@ -9,4 +9,4 @@ define('DB_PASS', '*C^5Cf8Ly3ccj1FZ#I');
 // facebook app cred
 define('FB_APP_ID', '1096662008567613');
 define('FB_APP_SECRET', 'bc8b0c441eb30f011ccb675da33a7740');
-define('FB_REDIRECT_URL', 'your_redirect_url');
+define('FB_REDIRECT_URL', 'https://4berryins.3as-elektrik.com/fb_callback.php');

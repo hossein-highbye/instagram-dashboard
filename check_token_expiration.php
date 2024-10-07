@@ -4,7 +4,7 @@ require_once 'db.php';
 
 // Ensure user is logged in and Instagram account is set
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['instagram_account_id'])) {
-    echo "Error: User or Instagram account not set!";
+    header("Location: login.php");
     exit;
 }
 
