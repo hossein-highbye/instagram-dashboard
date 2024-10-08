@@ -1,7 +1,8 @@
 <?php
+global $appID, $appSecret;
 require_once 'db.php';
 
-$url = "https://graph.facebook.com/oauth/access_token?client_id={FB_APP_ID}&client_secret={FB_APP_SECRET}&grant_type=client_credentials";
+$url = "https://graph.facebook.com/oauth/access_token?client_id={$appID}&client_secret={$appSecret}&grant_type=client_credentials";
 
 $ch = curl_init();
 

@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+global $appID;
 
 // Fetch the current token from the database
 $accessToken = $_SESSION['fb_access_token'];
@@ -7,7 +8,7 @@ $accessToken = $_SESSION['fb_access_token'];
 // Get a new long-lived access token before the current one expires
 try {
     $fb = new \Facebook\Facebook([
-        'app_id' => FB_APP_ID,
+        'app_id' => $appID,
         'app_secret' => FB_APP_SECRET,
         'default_graph_version' => 'v20.0',
     ]);
@@ -18,7 +19,7 @@ try {
 try {
     $response = $fb->get('/oauth/access_token', [
         'grant_type' => 'fb_exchange_token',
-        'client_id' => FB_APP_ID,
+        'client_id' => $appID,
         'client_secret' => FB_APP_SECRET,
         'fb_exchange_token' => $accessToken,
     ]);

@@ -1,10 +1,11 @@
 <?php
+global $appID;
 require_once 'config.php';
 require_once 'vendor/autoload.php';
 
 try {
     $fb = new \Facebook\Facebook([
-        'app_id' => FB_APP_ID,
+        'app_id' => $appID,
         'app_secret' => FB_APP_SECRET,
         'default_graph_version' => 'v20.0',
     ]);

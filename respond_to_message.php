@@ -1,5 +1,6 @@
 <?php
 session_start();
+global $appID;
 require_once 'db.php';
 require_once 'check_token_expiration.php'; // Ensure the token is valid
 
@@ -23,7 +24,7 @@ $messageText = $_POST['message'];
 
 try {
     $fb = new \Facebook\Facebook([
-        'app_id' => FB_APP_ID,
+        'app_id' => $appID,
         'app_secret' => FB_APP_SECRET,
         'default_graph_version' => 'v20.0',
     ]);
