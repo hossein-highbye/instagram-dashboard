@@ -1,6 +1,6 @@
 <?php
 require_once 'db.php';
-global $appID;
+global $appID, $appSecret;
 
 // Fetch the current token from the database
 $accessToken = $_SESSION['fb_access_token'];
@@ -9,7 +9,7 @@ $accessToken = $_SESSION['fb_access_token'];
 try {
     $fb = new \Facebook\Facebook([
         'app_id' => $appID,
-        'app_secret' => FB_APP_SECRET,
+        'app_secret' => $appSecret,
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
@@ -20,7 +20,7 @@ try {
     $response = $fb->get('/oauth/access_token', [
         'grant_type' => 'fb_exchange_token',
         'client_id' => $appID,
-        'client_secret' => FB_APP_SECRET,
+        'client_secret' => $appSecret,
         'fb_exchange_token' => $accessToken,
     ]);
 

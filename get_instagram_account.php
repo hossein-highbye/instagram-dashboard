@@ -1,6 +1,6 @@
 <?php
 session_start();
-global $appID;
+global $appID, $appSecret;
 require_once 'config.php';
 require_once 'vendor/autoload.php';
 
@@ -15,7 +15,7 @@ $accessToken = $_SESSION['fb_access_token'];
 try {
     $fb = new \Facebook\Facebook([
         'app_id' => $appID,
-        'app_secret' => FB_APP_SECRET,
+        'app_secret' => $appSecret,
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {

@@ -1,13 +1,13 @@
 <?php
 session_start();
-global $appID;
+global $appID, $appSecret;
 require_once 'vendor/autoload.php';
 require_once 'db.php';
 
 try {
     $fb = new \Facebook\Facebook([
         'app_id' => $appID,
-        'app_secret' => FB_APP_SECRET,
+        'app_secret' => $appSecret,
         'default_graph_version' => 'v20.0',
     ]);
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
