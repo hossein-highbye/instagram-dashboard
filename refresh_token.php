@@ -40,9 +40,9 @@ foreach ($tokens as $tokenData) {
         $updateStmt->execute([$newAccessToken, $expiresAt, $userId, $instagramAccountId]);
 
         echo "Token refreshed successfully for User ID: $userId\n";
-    } catch (Facebook\Exceptions\FacebookResponseException $e) {
+    } catch (\JanuSoftware\Facebook\Exception\ResponseException $e) {
         error_log('Graph returned an error: ' . $e->getMessage(), 3, 'error-log.log');
-    } catch (Facebook\Exceptions\FacebookSDKException $e) {
+    } catch (\JanuSoftware\Facebook\Exception\SDKException $e) {
         error_log('Facebook SDK returned an error: ' . $e->getMessage(), 3, 'error-log.log');
     }
 }

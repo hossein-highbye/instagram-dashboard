@@ -41,10 +41,10 @@ try {
         echo "<a href='{$conversations['paging']['next']}'>Load more conversations</a>";
     }
 
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
+} catch(\JanuSoftware\Facebook\Exception\ResponseException $e) {
     error_log('Graph returned an error: ' . $e->getMessage(),0, 'error-log.log');;
     exit;
-} catch(Facebook\Exceptions\FacebookSDKException $e) {
+} catch(\JanuSoftware\Facebook\Exception\SDKException $e) {
     error_log('Facebook SDK returned an error: ' . $e->getMessage(),0, 'error-log.log');
     exit;
 }
