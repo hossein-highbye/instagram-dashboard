@@ -46,10 +46,10 @@ try {
     } else {
         error_log('Failed to send message: ' . $response->getBody(), 0, 'error-log.log');
     }
-} catch (\JanuSoftware\Facebook\Exception\ResponseException $e) {
+} catch (Facebook\Exceptions\FacebookResponseException $e) {
     error_log('Graph returned an error: ' . $e->getMessage(), 0, 'error-log.log');
     exit;
-} catch (\JanuSoftware\Facebook\Exception\SDKException $e) {
+} catch (Facebook\Exceptions\FacebookSDKException $e) {
     error_log('Facebook SDK returned an error: ' . $e->getMessage(), 0, 'error-log.log');
     exit;
 }
