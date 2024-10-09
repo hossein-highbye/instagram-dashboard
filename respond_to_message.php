@@ -23,12 +23,12 @@ $conversationId = $_POST['conversation_id'];
 $messageText = $_POST['message'];
 
 try {
-    $fb = new \Facebook\Facebook([
+    $fb = new \JanuSoftware\Facebook\Facebook([
         'app_id' => $appID,
         'app_secret' => $appSecret,
         'default_graph_version' => 'v20.0',
     ]);
-} catch (\Facebook\Exceptions\FacebookSDKException $e) {
+} catch (\JanuSoftware\Facebook\Exception\SDKException $e) {
     error_log(basename(__FILE__) . ' : Facebook connection problem!', 0, 'error-log.log');
     exit;
 }

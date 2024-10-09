@@ -4,12 +4,12 @@ require_once 'vendor/autoload.php';
 global $appID, $appSecret;
 
 try {
-    $fb = new \Facebook\Facebook([
+    $fb = new \JanuSoftware\Facebook\Facebook([
         'app_id' => $appID,
         'app_secret' => $appSecret,
         'default_graph_version' => 'v20.0',
     ]);
-} catch (\Facebook\Exceptions\FacebookSDKException $e) {
+} catch (\JanuSoftware\Facebook\Exception\SDKException $e) {
     error_log(basename(__FILE__) . ' :Facebook connection problem!', 3, 'error-log.log');
 }
 

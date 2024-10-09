@@ -24,7 +24,7 @@ if (isset($input['entry'][0]['messaging'])) {
             $messageText = $event['message']['text'];
             $senderId = $event['sender']['id'];
             $timestamp = $event['timestamp'];
-            $conversationId = $event['message']['mid']; // Unique ID for the message
+            $conversationId = $event['message']['mid'];
 
             // Store message in database
             $stmt = $pdo->prepare("INSERT INTO messages (conversation_id, sender_id, message_text, created_time, timestamp) VALUES (?, ?, ?, NOW(), ?)");

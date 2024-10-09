@@ -25,18 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
-        // Check if the user exists
         if ($stmt->rowCount() == 1) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Verify the password
             if (password_verify($password, $user['password'])) {
                 // Password is correct, start a session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
-                // Redirect based on the role
                 if ($user['role'] === 'admin') {
                     header("Location: admin_dashboard.php");
                 } else {
